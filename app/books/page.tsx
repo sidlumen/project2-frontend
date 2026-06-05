@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 type Book = {
   id: number;
@@ -34,14 +35,14 @@ export default function BooksPage() {
       <h1 className="text-2xl font-bold mb-6">Books</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {books.map((book) => (
-          <div key={book.id} className="border rounded-lg p-4 shadow-sm">
+          <Link key={book.id} href={`/books/${book.id}`} className="border rounded-lg p-4 shadow-sm hover:bg-gray-50 block">
             <h2 className="text-lg font-semibold">{book.title}</h2>
             <p className="text-gray-600">{book.author}</p>
             <p className="text-sm mt-2 capitalize">{book.status.replace("_", " ")}</p>
             <p className="text-sm text-yellow-500">
               {book.rating !== null ? `${"★".repeat(book.rating)}` : "No rating"}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
